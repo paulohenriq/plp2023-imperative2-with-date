@@ -62,3 +62,18 @@ IO ::= "write" "(" Expressao ")" | "read" "(" Id ")"
 ChamadaProcedimento ::= "call" Id "(" [ ListaExpressao ] ")" 
 ListaExpressao ::= Expressao | Expressao, ListaExpressao
 ```
+## Execução
+
+* Local
+
+```bash
+cd <Linguagem>
+mvn clean generate-sources compile exec:java
+```
+
+* Applet
+
+```bash
+mvn package
+# Jar será gerado em ./Applet/target/
+```
