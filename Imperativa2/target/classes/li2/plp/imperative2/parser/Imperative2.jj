@@ -158,8 +158,8 @@ TOKEN : /* TOKENS DOS POSS�VEIS TIPOS */
 {
   < INT : "int" >
 | < BOOLEAN  : "boolean" >
-| < DATE : "date" >
 | < STRING  : "string" >
+| < DATE : "date" >
 
 }
 
@@ -471,28 +471,28 @@ Valor PValorDate() :
 {
 	token = <DATE_LITERAL>
     {
-			try{
-        String dateStr = token.image.substring(3);
-        String formatStr = "MM/dd/yyyy";
-        switch (token.image.substring(0, 2)) { 
-            case "US":
-                formatStr = "MM/dd/yyyy";
-                break;
-            case "BR":
-                formatStr = "dd/MM/yyyy";
-                break;
-            case "JP":
-                formatStr = "yyyy/MM/dd";
-                break;
-            default:
-                break;
-        }
-        SimpleDateFormat dateFormat = new SimpleDateFormat(formatStr, Locale.ENGLISH);
-        Date date = dateFormat.parse(dateStr);
-        return new ValorDate(date);
-			}catch(Exception e){
-				
+		try {
+			String dateStr = token.image.substring(3);
+			String formatStr = "MM/dd/yyyy";
+			switch (token.image.substring(0, 2)) { 
+				case "US":
+					formatStr = "MM/dd/yyyy";
+					break;
+				case "BR":
+					formatStr = "dd/MM/yyyy";
+					break;
+				case "JP":
+					formatStr = "yyyy/MM/dd";
+					break;
+				default:
+					break;
 			}
+			SimpleDateFormat dateFormat = new SimpleDateFormat(formatStr, Locale.ENGLISH);
+			Date date = dateFormat.parse(dateStr);
+			return new ValorDate(date);
+		} catch (Exception e) {
+
+		}
     }
 }
 

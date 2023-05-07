@@ -352,28 +352,28 @@ public class Imp2Parser implements Imp2ParserConstants {
     try {
         Token token;
       token = jj_consume_token(DATE_LITERAL);
-                        try{
-        String dateStr = token.image.substring(3);
-        String formatStr = "MM/dd/yyyy";
-        switch (token.image.substring(0, 2)) {
-            case "US":
-                formatStr = "MM/dd/yyyy";
-                break;
-            case "BR":
-                formatStr = "dd/MM/yyyy";
-                break;
-            case "JP":
-                formatStr = "yyyy/MM/dd";
-                break;
-            default:
-                break;
-        }
-        SimpleDateFormat dateFormat = new SimpleDateFormat(formatStr, Locale.ENGLISH);
-        Date date = dateFormat.parse(dateStr);
-        {if (true) return new ValorDate(date);}
-                        }catch(Exception e){
-
+                try {
+                        String dateStr = token.image.substring(3);
+                        String formatStr = "MM/dd/yyyy";
+                        switch (token.image.substring(0, 2)) {
+                                case "US":
+                                        formatStr = "MM/dd/yyyy";
+                                        break;
+                                case "BR":
+                                        formatStr = "dd/MM/yyyy";
+                                        break;
+                                case "JP":
+                                        formatStr = "yyyy/MM/dd";
+                                        break;
+                                default:
+                                        break;
                         }
+                        SimpleDateFormat dateFormat = new SimpleDateFormat(formatStr, Locale.ENGLISH);
+                        Date date = dateFormat.parse(dateStr);
+                        {if (true) return new ValorDate(date);}
+                } catch (Exception e) {
+
+                }
     throw new Error("Missing return statement in function");
     } finally {
       trace_return("PValorDate");
@@ -838,8 +838,8 @@ public class Imp2Parser implements Imp2ParserConstants {
         break;
       case INT:
       case BOOLEAN:
-      case DATE:
       case STRING:
+      case DATE:
       case RPAREN:
       case COMMA:
         listaPar = PListaDeclaracaoParametro();
@@ -905,8 +905,8 @@ public class Imp2Parser implements Imp2ParserConstants {
       switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
       case INT:
       case BOOLEAN:
-      case DATE:
       case STRING:
+      case DATE:
         tipo = PTipo();
         id = PId();
             lista = new ListaDeclaracaoParametro(new DeclaracaoParametro(id, tipo));

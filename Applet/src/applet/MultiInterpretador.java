@@ -287,22 +287,42 @@ public class MultiInterpretador {
 
 		while (parser.hasMoreTokens()) {
 			String parametro = parser.nextToken();
-			
+			String formatStr = "MM/dd/yyyy";
 			try {
-				Integer inteiro = Integer.valueOf(parametro);
-				valores.add(new li1.plp.expressions2.expression.ValorInteiro(inteiro.intValue()));
-				continue;
-			} catch (NumberFormatException e) {
-
+				switch (parametro.toString().substring(0, 2)) { 
+					case "US":
+						formatStr = "MM/dd/yyyy";
+						break;
+					case "BR":
+						formatStr = "dd/MM/yyyy";
+						break;
+					case "JP":
+						formatStr = "yyyy/MM/dd";
+						break;
+					default:
+						break;
+				}
+				SimpleDateFormat dateFormat = new SimpleDateFormat(formatStr, Locale.ENGLISH);
+				Date date = dateFormat.parse(parametro.toString().substring(3));
+				valores.add(new li1.plp.expressions2.expression.ValorDate(date));
+			} catch (Exception e) {
+				try {
+					Integer inteiro = Integer.valueOf(parametro);
+					valores.add(new li1.plp.expressions2.expression.ValorInteiro(inteiro.intValue()));
+				} catch (Exception err) {
+					// Tratamento de erro para conversão inválida para inteiro ou data
+					if(parametro.equalsIgnoreCase("true") 
+						|| parametro.equalsIgnoreCase("false")) {
+						Boolean booleano = Boolean.valueOf(parametro);
+						valores.add(new li2.plp.expressions2.expression.ValorBooleano(booleano.booleanValue()));
+					} else {
+						valores.add(new li2.plp.expressions2.expression.ValorString(parametro));
+					}		
+				}
 			}
-
-			if (parametro.equalsIgnoreCase("true")
-					|| parametro.equalsIgnoreCase("false")) {
-				Boolean booleano = Boolean.valueOf(parametro);
-				valores.add(new li1.plp.expressions2.expression.ValorBooleano(booleano.booleanValue()));
-			} else {
-				valores.add(new li1.plp.expressions2.expression.ValorString(parametro));
-			}
+			
+			entrada = Imp2Parser.criaListaValor(valores);
+			return entrada;
 		}
 		entrada = Imp1Parser.criaListaValor(valores);
 		return entrada;
@@ -317,27 +337,46 @@ public class MultiInterpretador {
 
 		while (parser.hasMoreTokens()) {
 			String parametro = parser.nextToken();
-			
+
+
+			String formatStr = "MM/dd/yyyy";
 			try {
-				Integer inteiro = Integer.valueOf(parametro);
-				valores.add(new li1.plp.expressions2.expression.ValorInteiro(inteiro.intValue()));
-				continue;
-			} catch (NumberFormatException e) {
-
+				switch (parametro.toString().substring(0, 2)) { 
+					case "US":
+						formatStr = "MM/dd/yyyy";
+						break;
+					case "BR":
+						formatStr = "dd/MM/yyyy";
+						break;
+					case "JP":
+						formatStr = "yyyy/MM/dd";
+						break;
+					default:
+						break;
+				}
+				SimpleDateFormat dateFormat = new SimpleDateFormat(formatStr, Locale.ENGLISH);
+				Date date = dateFormat.parse(parametro.toString().substring(3));
+				valores.add(new li1.plp.expressions2.expression.ValorDate(date));
+			} catch (Exception e) {
+				try {
+					Integer inteiro = Integer.valueOf(parametro);
+					valores.add(new li1.plp.expressions2.expression.ValorInteiro(inteiro.intValue()));
+				} catch (Exception err) {
+					// Tratamento de erro para conversão inválida para inteiro ou data
+					if(parametro.equalsIgnoreCase("true") 
+						|| parametro.equalsIgnoreCase("false")) {
+						Boolean booleano = Boolean.valueOf(parametro);
+						valores.add(new li2.plp.expressions2.expression.ValorBooleano(booleano.booleanValue()));
+					} else {
+						valores.add(new li2.plp.expressions2.expression.ValorString(parametro));
+					}		
+				}
 			}
-
-			if (parametro.equalsIgnoreCase("true")
-					|| parametro.equalsIgnoreCase("false")) {
-				Boolean booleano = Boolean.valueOf(parametro);
-				valores.add(new li2.plp.expressions2.expression.ValorBooleano(booleano.booleanValue()));
-			} else {
-				valores.add(new li2.plp.expressions2.expression.ValorString(parametro));
-			}
+			
+			entrada = Imp2Parser.criaListaValor(valores);
+			return entrada;
 		}
-		entrada = Imp2Parser.criaListaValor(valores);
-		return entrada;
 	}
-
 
 	@SuppressWarnings("unchecked")
 	private loo1.plp.orientadaObjetos1.memoria.colecao.ListaValor obterListaEntradaOO1(
@@ -349,26 +388,38 @@ public class MultiInterpretador {
 		while (parser.hasMoreTokens()) {
 			String parametro = parser.nextToken();
 
+			String formatStr = "MM/dd/yyyy";
 			try {
-				Integer inteiro = Integer.valueOf(parametro);
-				valores
-						.add(new loo2.plp.orientadaObjetos1.expressao.valor.ValorInteiro(
-								inteiro.intValue()));
-				continue;
-			} catch (NumberFormatException e) {
-
-			}
-
-			if (parametro.equalsIgnoreCase("true")
-					|| parametro.equalsIgnoreCase("false")) {
-				Boolean booleano = Boolean.valueOf(parametro);
-				valores
-						.add(new loo1.plp.orientadaObjetos1.expressao.valor.ValorBooleano(
-								booleano.booleanValue()));
-			} else {
-				valores
-						.add(new loo1.plp.orientadaObjetos1.expressao.valor.ValorString(
-								parametro));
+				switch (parametro.toString().substring(0, 2)) { 
+					case "US":
+						formatStr = "MM/dd/yyyy";
+						break;
+					case "BR":
+						formatStr = "dd/MM/yyyy";
+						break;
+					case "JP":
+						formatStr = "yyyy/MM/dd";
+						break;
+					default:
+						break;
+				}
+				SimpleDateFormat dateFormat = new SimpleDateFormat(formatStr, Locale.ENGLISH);
+				Date date = dateFormat.parse(parametro.toString().substring(3));
+				valores.add(new li1.plp.expressions2.expression.ValorDate(date));
+			} catch (Exception e) {
+				try {
+					Integer inteiro = Integer.valueOf(parametro);
+					valores.add(new li1.plp.expressions2.expression.ValorInteiro(inteiro.intValue()));
+				} catch (Exception err) {
+					// Tratamento de erro para conversão inválida para inteiro ou data
+					if(parametro.equalsIgnoreCase("true") 
+						|| parametro.equalsIgnoreCase("false")) {
+						Boolean booleano = Boolean.valueOf(parametro);
+						valores.add(new li2.plp.expressions2.expression.ValorBooleano(booleano.booleanValue()));
+					} else {
+						valores.add(new li2.plp.expressions2.expression.ValorString(parametro));
+					}		
+				}
 			}
 		}
 		entrada = OO1Parser.criaListaValor(valores);
@@ -385,26 +436,38 @@ public class MultiInterpretador {
 		while (parser.hasMoreTokens()) {
 			String parametro = parser.nextToken();
 
+			String formatStr = "MM/dd/yyyy";
 			try {
-				Integer inteiro = Integer.valueOf(parametro);
-				valores
-						.add(new loo2.plp.orientadaObjetos1.expressao.valor.ValorInteiro(
-								inteiro.intValue()));
-				continue;
-			} catch (NumberFormatException e) {
-
-			}
-
-			if (parametro.equalsIgnoreCase("true")
-					|| parametro.equalsIgnoreCase("false")) {
-				Boolean booleano = Boolean.valueOf(parametro);
-				valores
-						.add(new loo2.plp.orientadaObjetos1.expressao.valor.ValorBooleano(
-								booleano.booleanValue()));
-			} else {
-				valores
-						.add(new loo2.plp.orientadaObjetos1.expressao.valor.ValorString(
-								parametro));
+				switch (parametro.toString().substring(0, 2)) { 
+					case "US":
+						formatStr = "MM/dd/yyyy";
+						break;
+					case "BR":
+						formatStr = "dd/MM/yyyy";
+						break;
+					case "JP":
+						formatStr = "yyyy/MM/dd";
+						break;
+					default:
+						break;
+				}
+				SimpleDateFormat dateFormat = new SimpleDateFormat(formatStr, Locale.ENGLISH);
+				Date date = dateFormat.parse(parametro.toString().substring(3));
+				valores.add(new li1.plp.expressions2.expression.ValorDate(date));
+			} catch (Exception e) {
+				try {
+					Integer inteiro = Integer.valueOf(parametro);
+					valores.add(new li1.plp.expressions2.expression.ValorInteiro(inteiro.intValue()));
+				} catch (Exception err) {
+					// Tratamento de erro para conversão inválida para inteiro ou data
+					if(parametro.equalsIgnoreCase("true") 
+						|| parametro.equalsIgnoreCase("false")) {
+						Boolean booleano = Boolean.valueOf(parametro);
+						valores.add(new li2.plp.expressions2.expression.ValorBooleano(booleano.booleanValue()));
+					} else {
+						valores.add(new li2.plp.expressions2.expression.ValorString(parametro));
+					}		
+				}
 			}
 		}
 		entrada = OO2Parser.criaListaValor(valores);
