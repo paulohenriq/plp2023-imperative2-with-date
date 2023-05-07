@@ -5,6 +5,14 @@ A proposta deste trabalho é implementar o tipo date e suas respectivas operaç�
 - Paulo Henrique Gomes Silva
 - Pedro Henrique Caminha Lins
 
+### Escopo:
+- Implementar o tipo de dados *date*
+- Implementar a regra de entrada de uma data de acordo com os formatos: dd/mm/yyyy, mm/dd/yyyy, yyyy/mm/dd
+- Implementar conversão de tipo *String* para *Date*
+- Implementar operações entre datas:
+	- Comparação (==, >, >=, <, <=)
+	- Diferença em dias de um intervalo de datas
+
 ## BNF
 ```
 Programa ::= Comando
