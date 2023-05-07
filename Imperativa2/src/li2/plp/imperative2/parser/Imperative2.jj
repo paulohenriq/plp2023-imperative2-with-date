@@ -139,6 +139,7 @@ TOKEN : /* TOKENS DOS POSS�VEIS TIPOS */
   < INT : "int" >
 | < BOOLEAN  : "boolean" >
 | < STRING  : "string" >
+| < DATE : "date" >
 
 }
 
@@ -168,6 +169,20 @@ TOKEN : /* LITERALS */
       )*
       "\""
   >
+|
+< DAY: "0"["1"-"9"] | ["1"-"2"]["0"-"9"] | "3"["0"-"1"] >
+|
+< MONTH: "0"["1"-"9"] | "1"["0"-"2"] >
+|
+< YEAR: ["1"-"9"]["0"-"9"]["0"-"9"]["0"-"9"] >
+|
+< #DATE_US_LITERAL: <MONTH> ("/" | "-") <DAY> ("/" | "-") <YEAR> >
+|
+< #DATE_BR_LITERAL: <DAY> ("/" | "-") <MONTH> ("/" | "-") <YEAR> >
+|
+< #DATE_JP_LITERAL: <YEAR> ("/" | "-") <MONTH> ("/" | "-") <DAY> >
+|
+< DATE_LITERAL: "US" <DATE_US_LITERAL> | "BR" <DATE_BR_LITERAL> | "JP" <DATE_JP_LITERAL> >
 }
 
 TOKEN : /* IDENTIFIERS */
@@ -429,15 +444,44 @@ Valor PValorString() :
 	}
 }
 
+Valor PValorDate() :
+{
+	Token token;
+}
+{
+	token = <DATE_LITERAL>
+	{
+		String dateStr = token.image.substring(2);
+		String formatStr;
+		switch (token.image.substring(0, 2)) { 
+				case "US":
+						formatStr = "MM/dd/yyyy";
+						break;
+				case "BR":
+						formatStr = "dd/MM/yyyy";
+						break;
+				case "JP":
+						formatStr = "yyyy/MM/dd";
+						break;
+				default:
+						throw new ParseException("Prefixo inválido no token DATE_LITERAL", 0);
+		}
+		SimpleDateFormat dateFormat = new SimpleDateFormat(formatStr, Locale.ENGLISH);
+		Date date = dateFormat.parse(dateStr);
+		return date;
+	}
+}
+
 Valor PValor() :
 {
 	Valor retorno;
 }
 {
 	(
-      	  retorno = PValorInteiro() 
+    retorno = PValorInteiro() 
 		| retorno = PValorBooleano()
 		| retorno = PValorString()
+		| retorno = PValorDate()
     )
 	
 	{
