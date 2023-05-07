@@ -7,7 +7,8 @@ A proposta deste trabalho é implementar o tipo date e suas respectivas operaç�
 
 ### Escopo:
 - [x] Implementar o tipo de dados *date*
-- [x] Implementar a regra de entrada de uma data de acordo com os formatos: dd/mm/yyyy, mm/dd/yyyy, yyyy/mm/dd
+- [x] Implementar a regra de entrada de uma data de acordo com os formatos: 
+BR-dd/mm/yyyy, US-mm/dd/yyyy, JP-yyyy/mm/dd
 - [ ] Implementar conversão de tipo *String* para *Date*
 - [ ] Implementar operações entre datas:
 	- [ ] Comparação (==, >, >=, <, <=)
