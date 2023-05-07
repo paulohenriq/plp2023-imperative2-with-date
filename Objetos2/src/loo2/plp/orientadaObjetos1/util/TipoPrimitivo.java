@@ -23,6 +23,11 @@ public class TipoPrimitivo implements Tipo {
      */
     public static final int STRING = 4;
 
+     /**
+     * Indica que a expressao associada &eacute; string.
+     */
+    public static final int DATE = 5;
+
     /**
      * Constante de tipo inteira.
      */
@@ -39,6 +44,11 @@ public class TipoPrimitivo implements Tipo {
      */
     public static final Tipo TIPO_STRING = new TipoPrimitivo(STRING);
 
+     /**
+     * Constante de tipo string.
+     */
+    public static final Tipo TIPO_DATE = new TipoPrimitivo(DATE);
+
     /**
      * Constante de tipo identificador inteiro.
      */
@@ -54,6 +64,11 @@ public class TipoPrimitivo implements Tipo {
      */
     public static final Id TIPO_ID_boolean = new Id("boolean");
 
+        /**
+     * Constante de tipo identificador booleno.
+     */
+    public static final Id TIPO_ID_date = new Id("date");
+
     /**
      * O tipo da expressao associada.
      */
@@ -66,6 +81,7 @@ public class TipoPrimitivo implements Tipo {
      * @see #INTEIRO
      * @see #BOOLEANO
      * @see #STRING
+     * @see #DATE
      */
     public TipoPrimitivo(int tipo) {
         this.tipo = tipo;
@@ -78,6 +94,7 @@ public class TipoPrimitivo implements Tipo {
      * @see #INTEIRO
      * @see #BOOLEANO
      * @see #STRING
+     * @see #DATE
      */
      public Id getTipo(){
 
@@ -91,6 +108,9 @@ public class TipoPrimitivo implements Tipo {
                 break;
             case(STRING):
                 resposta = TIPO_ID_string;
+                break;
+            case(DATE):
+                resposta = TIPO_ID_date;
                 break;
         }
         return resposta;
@@ -127,13 +147,23 @@ public class TipoPrimitivo implements Tipo {
     }
 
     /**
+     * Indica se esta expressao &eacute; string.
+     *
+     * @return <code>true</code> se esta expressao for string;
+     *          <code>false</code> caso contrario.
+     */
+    public boolean eDate() {
+        return tipo == DATE;
+    }
+
+    /**
     *
     * Por questao de simplificacao, este m�todo foi implementado para unificar TipoPrimitivo e
     * TipoClasse em uma �nica interface: Tipo
     *
     */
     public boolean eValido(AmbienteCompilacaoOO1 ambiente){
-        return tipo == STRING || tipo == BOOLEANO || tipo == INTEIRO;
+        return tipo == STRING || tipo == BOOLEANO || tipo == INTEIRO|| tipo == DATE;
     }
 
     /**
@@ -143,7 +173,7 @@ public class TipoPrimitivo implements Tipo {
      *          <code>false</code> caso contrario.
      */
     public boolean eValido() {
-        return tipo == STRING || tipo == BOOLEANO || tipo == INTEIRO;
+        return tipo == STRING || tipo == BOOLEANO || tipo == INTEIRO|| tipo == DATE;
     }
 
     /**
@@ -173,6 +203,9 @@ public class TipoPrimitivo implements Tipo {
                 break;
             case(STRING):
                 resposta = "string";
+                break;
+            case(DATE):
+                resposta = "date";
                 break;
         }
         return resposta;

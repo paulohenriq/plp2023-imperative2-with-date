@@ -1,9 +1,8 @@
 { 
-   var a  =  1 ,
-   proc incA (int z)  {
-     a := a + z
-   };
-   call incA(5);
-   call incA(5);
-   write(a)
+  var data1 = US-10/11/1900,
+  var data2 = BR-12/10/1900,
+  var data3 = JP-1900/10/13;
+  write(data1);
+  write(data2);
+  write(data3)
 }

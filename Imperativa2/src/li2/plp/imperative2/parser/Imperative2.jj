@@ -17,6 +17,7 @@ import li2.plp.imperative2.command.*;
 import li2.plp.imperative2.declaration.*;
 import li2.plp.imperative2.memory.*;
 import java.util.*;
+import java.text.*;
 
 public class Imp2Parser {
 
@@ -40,21 +41,40 @@ public class Imp2Parser {
 	    	{
 	    	 	String parametro = args[i];
 	    	 	
-	    	 	try { 
-	    	 		Integer inteiro = Integer.valueOf(parametro);
-	    	 		valores.add(new ValorInteiro(inteiro.intValue()));
-	    	 		continue;
-	    	 	} catch(NumberFormatException e) {
-	    	 		
-	    	 	}
-	    	 	
-	    	 	if(parametro.equalsIgnoreCase("true") 
-	    	 	    || parametro.equalsIgnoreCase("false")) {
-	    	 		Boolean booleano = Boolean.valueOf(parametro);
-	    	 		valores.add(new ValorBooleano(booleano.booleanValue()));
-	    	 	} else {
-	    	 	    valores.add(new ValorString(parametro));
-	    	 	}			
+				String formatStr = "MM/dd/yyyy";
+	    	 	try {
+					switch (parametro.toString().substring(0, 2)) { 
+						case "US":
+							formatStr = "MM/dd/yyyy";
+							break;
+						case "BR":
+							formatStr = "dd/MM/yyyy";
+							break;
+						case "JP":
+							formatStr = "yyyy/MM/dd";
+							break;
+						default:
+							break;
+					}
+					SimpleDateFormat dateFormat = new SimpleDateFormat(formatStr, Locale.ENGLISH);
+					Date date = dateFormat.parse(parametro.toString().substring(3));
+					valores.add(new ValorDate(date));
+				} catch (Exception e) {
+					try {
+						Integer inteiro = Integer.valueOf(parametro);
+						valores.add(new ValorInteiro(inteiro.intValue()));
+					} catch (Exception ee) {
+						// Tratamento de erro para conversão inválida para inteiro ou data
+						if(parametro.equalsIgnoreCase("true") 
+							|| parametro.equalsIgnoreCase("false")) {
+							Boolean booleano = Boolean.valueOf(parametro);
+							valores.add(new ValorBooleano(booleano.booleanValue()));
+						} else {
+							valores.add(new ValorString(parametro));
+						}			
+					}
+				}
+
 	    	}
 	    	  entrada = criaListaValor(valores);
 	    } 
@@ -138,8 +158,8 @@ TOKEN : /* TOKENS DOS POSS�VEIS TIPOS */
 {
   < INT : "int" >
 | < BOOLEAN  : "boolean" >
-| < STRING  : "string" >
 | < DATE : "date" >
+| < STRING  : "string" >
 
 }
 
@@ -176,13 +196,13 @@ TOKEN : /* LITERALS */
 |
 < YEAR: ["1"-"9"]["0"-"9"]["0"-"9"]["0"-"9"] >
 |
-< #DATE_US_LITERAL: <MONTH> ("/" | "-") <DAY> ("/" | "-") <YEAR> >
+< #DATE_US_LITERAL: <MONTH>("/")<DAY>("/")<YEAR> >
 |
-< #DATE_BR_LITERAL: <DAY> ("/" | "-") <MONTH> ("/" | "-") <YEAR> >
+< #DATE_BR_LITERAL: <DAY>("/")<MONTH>("/")<YEAR> >
 |
-< #DATE_JP_LITERAL: <YEAR> ("/" | "-") <MONTH> ("/" | "-") <DAY> >
+< #DATE_JP_LITERAL: <YEAR>("/")<MONTH>("/")<DAY> >
 |
-< DATE_LITERAL: "US" <DATE_US_LITERAL> | "BR" <DATE_BR_LITERAL> | "JP" <DATE_JP_LITERAL> >
+< DATE_LITERAL: "US-"<DATE_US_LITERAL> | "BR-"<DATE_BR_LITERAL> | "JP-"<DATE_JP_LITERAL> >
 }
 
 TOKEN : /* IDENTIFIERS */
@@ -450,26 +470,30 @@ Valor PValorDate() :
 }
 {
 	token = <DATE_LITERAL>
-	{
-		String dateStr = token.image.substring(2);
-		String formatStr;
-		switch (token.image.substring(0, 2)) { 
-				case "US":
-						formatStr = "MM/dd/yyyy";
-						break;
-				case "BR":
-						formatStr = "dd/MM/yyyy";
-						break;
-				case "JP":
-						formatStr = "yyyy/MM/dd";
-						break;
-				default:
-						throw new ParseException("Prefixo inválido no token DATE_LITERAL", 0);
-		}
-		SimpleDateFormat dateFormat = new SimpleDateFormat(formatStr, Locale.ENGLISH);
-		Date date = dateFormat.parse(dateStr);
-		return date;
-	}
+    {
+			try{
+        String dateStr = token.image.substring(3);
+        String formatStr = "MM/dd/yyyy";
+        switch (token.image.substring(0, 2)) { 
+            case "US":
+                formatStr = "MM/dd/yyyy";
+                break;
+            case "BR":
+                formatStr = "dd/MM/yyyy";
+                break;
+            case "JP":
+                formatStr = "yyyy/MM/dd";
+                break;
+            default:
+                break;
+        }
+        SimpleDateFormat dateFormat = new SimpleDateFormat(formatStr, Locale.ENGLISH);
+        Date date = dateFormat.parse(dateStr);
+        return new ValorDate(date);
+			}catch(Exception e){
+				
+			}
+    }
 }
 
 Valor PValor() :
@@ -478,7 +502,7 @@ Valor PValor() :
 }
 {
 	(
-    retorno = PValorInteiro() 
+    	retorno = PValorInteiro() 
 		| retorno = PValorBooleano()
 		| retorno = PValorString()
 		| retorno = PValorDate()
@@ -798,7 +822,8 @@ Tipo PTipo():
 	(
 	<INT> {tipo = TipoPrimitivo.INTEIRO;} |
 	<BOOLEAN> {tipo = TipoPrimitivo.BOOLEANO;} |
-	<STRING> {tipo = TipoPrimitivo.STRING;}
+	<STRING> {tipo = TipoPrimitivo.STRING;}    |
+	<DATE> {tipo = TipoPrimitivo.DATE;}    
 	)
 	{
 		return tipo;

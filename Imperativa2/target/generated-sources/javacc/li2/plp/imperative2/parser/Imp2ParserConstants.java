@@ -55,9 +55,9 @@ public interface Imp2ParserConstants {
   /** RegularExpression Id. */
   int BOOLEAN = 27;
   /** RegularExpression Id. */
-  int STRING = 28;
+  int DATE = 28;
   /** RegularExpression Id. */
-  int DATE = 29;
+  int STRING = 29;
   /** RegularExpression Id. */
   int INTEGER_LITERAL = 30;
   /** RegularExpression Id. */
@@ -186,8 +186,8 @@ public interface Imp2ParserConstants {
     "\"call\"",
     "\"int\"",
     "\"boolean\"",
-    "\"string\"",
     "\"date\"",
+    "\"string\"",
     "<INTEGER_LITERAL>",
     "<DECIMAL_LITERAL>",
     "<HEX_LITERAL>",
