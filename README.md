@@ -9,10 +9,9 @@ A proposta deste trabalho é implementar o tipo date e suas respectivas operaç�
 - [x] Implementar o tipo de dados *date*
 - [x] Implementar a regra de entrada de uma data de acordo com os formatos: 
 BR-dd/mm/yyyy, US-mm/dd/yyyy, JP-yyyy/mm/dd
-- [ ] Implementar conversão de tipo *String* para *Date*
-- [ ] Implementar operações entre datas:
-	- [ ] Comparação (==, >, >=, <, <=)
-	- [ ] Diferença em dias de um intervalo de datas
+- [x] Implementar operações entre datas:
+	- [x] Comparação (==)
+	- [x] Diferença em dias entre duas datas (---)
 
 ## BNF
 ```
@@ -27,9 +26,9 @@ Comando ::= Atribuicao
               | ChamadaProcedimento
 Skip ::=
 Atribuicao ::= Id ":=" Expressao
-Expressao ::= Valor | ExpUnaria | ExpBinaria | Id | OperacaoData
+Expressao ::= Valor | ExpUnaria | ExpBinaria | Id
 Valor ::= ValorConcreto
-ValorConcreto ::= ValorInteiro | ValorBooleano | ValorString
+ValorConcreto ::= ValorInteiro | ValorBooleano | ValorString | ValorData
 ExpUnaria ::= "-" Expressao | "not" Expressao | "length" Expressao
 ExpBinaria ::= Expressao "+" Expressao
                   | Expressao "-" Expressao
@@ -37,17 +36,7 @@ ExpBinaria ::= Expressao "+" Expressao
                   | Expressao "or" Expressao
                   | Expressao "==" Expressao
                   | Expressao "++" Expressao
-OperacaoData ::= ConversaoData | OperacaoComData
-ConversaoData ::= "toDate" "(" ValorString "," ValorString ")"
-OperacaoComData ::= Expressao "+" Expressao
-                      | Expressao "-" Expressao
-                      | Expressao "<" Expressao
-                      | Expressao ">" Expressao
-                      | Expressao "<=" Expressao
-                      | Expressao ">=" Expressao
-                      | Expressao "==" Expressao
-                      | ContagemDias
-ContagemDias ::= "countDays" "(" ValorString "," ValorString ")"
+		  | Expressao "---" Expressao
 ComandoDeclaracao :: = "{" Declaracao ";" Comando "}"
 Declaracao ::= DeclaracaoVariavel
                   | DeclaracaoProcedimento
