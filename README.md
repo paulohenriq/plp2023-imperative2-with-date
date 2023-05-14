@@ -14,7 +14,7 @@ BR-dd/mm/yyyy, US-mm/dd/yyyy, JP-yyyy/mm/dd
 	- [x] Diferença em dias entre duas datas (---)
 
 ## BNF
-```
+<pre>
 Programa ::= Comando
 Comando ::= Atribuicao
               | ComandoDeclaracao
@@ -52,7 +52,7 @@ IfThenElse ::= "if" Expressao "then" Comando "else" Comando
 IO ::= "write" "(" Expressao ")" | "read" "(" Id ")"
 ChamadaProcedimento ::= "call" Id "(" [ ListaExpressao ] ")" 
 ListaExpressao ::= Expressao | Expressao, ListaExpressao
-```
+</pre>
 ## Execução
 
 * Local
