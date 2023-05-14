@@ -6,13 +6,12 @@ A proposta deste trabalho é implementar o tipo date e suas respectivas operaç�
 - Pedro Henrique Caminha Lins
 
 ### Escopo:
-- [x] Implementar o tipo de dados *date*
+- [x] Implementar o tipo de dados *data*
 - [x] Implementar a regra de entrada de uma data de acordo com os formatos: 
 BR-dd/mm/yyyy, US-mm/dd/yyyy, JP-yyyy/mm/dd
-- [ ] Implementar conversão de tipo *String* para *Date*
-- [ ] Implementar operações entre datas:
-	- [ ] Comparação (==, >, >=, <, <=)
-	- [ ] Diferença em dias de um intervalo de datas
+- [x] Implementar operações entre datas:
+	- [x] Comparação (===)
+	- [x] Diferença em dias entre duas datas (---)
 
 ## BNF
 ```
@@ -27,9 +26,9 @@ Comando ::= Atribuicao
               | ChamadaProcedimento
 Skip ::=
 Atribuicao ::= Id ":=" Expressao
-Expressao ::= Valor | ExpUnaria | ExpBinaria | Id | OperacaoData
+Expressao ::= Valor | ExpUnaria | ExpBinaria | Id
 Valor ::= ValorConcreto
-ValorConcreto ::= ValorInteiro | ValorBooleano | ValorString
+ValorConcreto ::= ValorInteiro | ValorBooleano | ValorString | <a href="#">ValorData</a>
 ExpUnaria ::= "-" Expressao | "not" Expressao | "length" Expressao
 ExpBinaria ::= Expressao "+" Expressao
                   | Expressao "-" Expressao
@@ -37,17 +36,8 @@ ExpBinaria ::= Expressao "+" Expressao
                   | Expressao "or" Expressao
                   | Expressao "==" Expressao
                   | Expressao "++" Expressao
-OperacaoData ::= ConversaoData | OperacaoComData
-ConversaoData ::= "toDate" "(" ValorString "," ValorString ")"
-OperacaoComData ::= Expressao "+" Expressao
-                      | Expressao "-" Expressao
-                      | Expressao "<" Expressao
-                      | Expressao ">" Expressao
-                      | Expressao "<=" Expressao
-                      | Expressao ">=" Expressao
-                      | Expressao "==" Expressao
-                      | ContagemDias
-ContagemDias ::= "countDays" "(" ValorString "," ValorString ")"
+		              | <a href="#">Expressao "---" Expressao</a>
+                  | <a href="#">Expressao "===" Expressao</a>
 ComandoDeclaracao :: = "{" Declaracao ";" Comando "}"
 Declaracao ::= DeclaracaoVariavel
                   | DeclaracaoProcedimento
@@ -56,7 +46,7 @@ DeclaracaoVariavel ::= "var" Id "=" Expressao
 DeclaracaoComposta ::= Declaracao "," Declaracao
 DeclaracaoProcedimento ::= "proc" Id "(" [ ListaDeclaracaoParametro ] ")" "{" Comando "}"
 ListaDeclaracaoParametro ::= Tipo Id | Tipo Id "," ListaDeclaracaoParametro
-Tipo ::= "string" | "int" | "boolean" | "date"
+Tipo ::= "string" | "int" | "boolean" | <a href="#">"data"</a>
 While ::= "while" Expressao "do" Comando
 IfThenElse ::= "if" Expressao "then" Comando "else" Comando
 IO ::= "write" "(" Expressao ")" | "read" "(" Id ")"

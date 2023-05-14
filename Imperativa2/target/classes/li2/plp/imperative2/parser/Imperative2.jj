@@ -16,6 +16,8 @@ import li2.plp.imperative2.*;
 import li2.plp.imperative2.command.*;
 import li2.plp.imperative2.declaration.*;
 import li2.plp.imperative2.memory.*;
+import li2.plp.imperative2.util.Data;
+import java.time.format.DateTimeParseException;
 import java.util.*;
 import java.text.*;
 
@@ -41,24 +43,9 @@ public class Imp2Parser {
 	    	{
 	    	 	String parametro = args[i];
 	    	 	
-				String formatStr = "MM/dd/yyyy";
-	    	 	try {
-					switch (parametro.toString().substring(0, 2)) { 
-						case "US":
-							formatStr = "MM/dd/yyyy";
-							break;
-						case "BR":
-							formatStr = "dd/MM/yyyy";
-							break;
-						case "JP":
-							formatStr = "yyyy/MM/dd";
-							break;
-						default:
-							break;
-					}
-					SimpleDateFormat dateFormat = new SimpleDateFormat(formatStr, Locale.ENGLISH);
-					Date date = dateFormat.parse(parametro.toString().substring(3));
-					valores.add(new ValorDate(date));
+	    	try {
+					Data data = new Data(parametro.toString());
+					valores.add(new ValorDate(data));
 				} catch (Exception e) {
 					try {
 						Integer inteiro = Integer.valueOf(parametro);
@@ -159,7 +146,7 @@ TOKEN : /* TOKENS DOS POSS�VEIS TIPOS */
   < INT : "int" >
 | < BOOLEAN  : "boolean" >
 | < STRING  : "string" >
-| < DATE : "date" >
+| < DATA : "data" >
 
 }
 
@@ -280,6 +267,8 @@ TOKEN : /* OPERATORS */
 | < CONCAT: "++" >
 | < PLUS: "+" >
 | < MINUS: "-" >
+| < DIFF: "---" >
+| < DATE_EQUAL: "===" >
 | < STAR: "*" >
 | < SLASH: "/" >
 | < BIT_AND: "&" >
@@ -464,35 +453,15 @@ Valor PValorString() :
 	}
 }
 
-Valor PValorDate() :
+Valor PValorDate() throws DateTimeParseException :
 {
 	Token token;
 }
 {
 	token = <DATE_LITERAL>
     {
-		try {
-			String dateStr = token.image.substring(3);
-			String formatStr = "MM/dd/yyyy";
-			switch (token.image.substring(0, 2)) { 
-				case "US":
-					formatStr = "MM/dd/yyyy";
-					break;
-				case "BR":
-					formatStr = "dd/MM/yyyy";
-					break;
-				case "JP":
-					formatStr = "yyyy/MM/dd";
-					break;
-				default:
-					break;
-			}
-			SimpleDateFormat dateFormat = new SimpleDateFormat(formatStr, Locale.ENGLISH);
-			Date date = dateFormat.parse(dateStr);
-			return new ValorDate(date);
-		} catch (Exception e) {
-
-		}
+			Data data = new Data(token.toString());
+			return new ValorDate(data);
     }
 }
 
@@ -589,6 +558,10 @@ Expressao PExpBinaria() :
 		  	retorno = PExpConcat()
 		| LOOKAHEAD (PExpPrimaria() <MINUS>)
 			retorno = PExpSub()
+		| LOOKAHEAD (PExpPrimaria() <DIFF>)
+			retorno = PExpDiff()
+		| LOOKAHEAD (PExpPrimaria() <DATE_EQUAL>)
+			retorno = PExpDateEqual()
 		| LOOKAHEAD (PExpPrimaria() <AND>)
 			retorno = PExpAnd()
 		| LOOKAHEAD (PExpPrimaria() <OR>)
@@ -625,6 +598,30 @@ ExpSub PExpSub() :
 	<MINUS>
 	dir = PExpressao()
 	{return new ExpSub(esq, dir);}
+}
+
+ExpDiff PExpDiff() :
+{
+	Expressao esq;
+	Expressao dir;
+}
+{
+	esq = PExpPrimaria()
+	<DIFF>
+	dir = PExpressao()
+	{return new ExpDiff(esq, dir);}
+}
+
+ExpDateEqual PExpDateEqual() :
+{
+	Expressao esq;
+	Expressao dir;
+}
+{
+	esq = PExpPrimaria()
+	<DATE_EQUAL>
+	dir = PExpressao()
+	{return new ExpDateEqual(esq, dir);}
 }
 
 
@@ -686,7 +683,7 @@ Expressao PExpressao() :
 	(
 	    LOOKAHEAD (2) 
 	  		retorno = PExpUnaria()
-	  | LOOKAHEAD (PExpPrimaria() (<OR> | <AND> | <MINUS> | <PLUS> | <EQ> | <CONCAT>)) 
+	  | LOOKAHEAD (PExpPrimaria() (<OR> | <AND> | <MINUS> | <DIFF> | <DATE_EQUAL> | <PLUS> | <EQ> | <CONCAT>)) 
 	  		retorno = PExpBinaria()
 	  |
 	    retorno = PExpPrimaria()
@@ -823,7 +820,7 @@ Tipo PTipo():
 	<INT> {tipo = TipoPrimitivo.INTEIRO;} |
 	<BOOLEAN> {tipo = TipoPrimitivo.BOOLEANO;} |
 	<STRING> {tipo = TipoPrimitivo.STRING;}    |
-	<DATE> {tipo = TipoPrimitivo.DATE;}    
+	<DATA> {tipo = TipoPrimitivo.DATA;}    
 	)
 	{
 		return tipo;

@@ -37,7 +37,7 @@ public class TipoProcedimento implements Tipo {
 		return false;
 	}
 
-	public boolean eDate() {
+	public boolean eData() {
 		return false;
 	}
 

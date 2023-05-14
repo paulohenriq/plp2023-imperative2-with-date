@@ -43,6 +43,7 @@
 /Users/paulohenriq/Library/Mobile Documents/com~apple~CloudDocs/Mestrado/UFPE/2023.1/Disciplinas/PLP/plp2023-imperative2-with-date/Imperativa2/src/li2/plp/imperative1/memory/ListaValor.java
 /Users/paulohenriq/Library/Mobile Documents/com~apple~CloudDocs/Mestrado/UFPE/2023.1/Disciplinas/PLP/plp2023-imperative2-with-date/Imperativa2/target/generated-sources/javacc/li2/plp/imperative2/parser/TokenMgrError.java
 /Users/paulohenriq/Library/Mobile Documents/com~apple~CloudDocs/Mestrado/UFPE/2023.1/Disciplinas/PLP/plp2023-imperative2-with-date/Imperativa2/src/li2/plp/expressions2/expression/ExpDeclaracao.java
+/Users/paulohenriq/Library/Mobile Documents/com~apple~CloudDocs/Mestrado/UFPE/2023.1/Disciplinas/PLP/plp2023-imperative2-with-date/Imperativa2/src/li2/plp/expressions2/expression/ExpDiff.java
 /Users/paulohenriq/Library/Mobile Documents/com~apple~CloudDocs/Mestrado/UFPE/2023.1/Disciplinas/PLP/plp2023-imperative2-with-date/Imperativa2/src/li2/plp/expressions2/expression/ExpConcat.java
 /Users/paulohenriq/Library/Mobile Documents/com~apple~CloudDocs/Mestrado/UFPE/2023.1/Disciplinas/PLP/plp2023-imperative2-with-date/Imperativa2/src/li2/plp/imperative1/command/While.java
 /Users/paulohenriq/Library/Mobile Documents/com~apple~CloudDocs/Mestrado/UFPE/2023.1/Disciplinas/PLP/plp2023-imperative2-with-date/Imperativa2/target/generated-sources/javacc/li2/plp/imperative2/parser/Imp2Parser.java
@@ -67,8 +68,10 @@
 /Users/paulohenriq/Library/Mobile Documents/com~apple~CloudDocs/Mestrado/UFPE/2023.1/Disciplinas/PLP/plp2023-imperative2-with-date/Imperativa2/src/li2/plp/expressions1/util/TipoPrimitivo.java
 /Users/paulohenriq/Library/Mobile Documents/com~apple~CloudDocs/Mestrado/UFPE/2023.1/Disciplinas/PLP/plp2023-imperative2-with-date/Imperativa2/src/li2/plp/imperative1/memory/EntradaVaziaException.java
 /Users/paulohenriq/Library/Mobile Documents/com~apple~CloudDocs/Mestrado/UFPE/2023.1/Disciplinas/PLP/plp2023-imperative2-with-date/Imperativa2/src/li2/plp/imperative2/command/ChamadaProcedimento.java
+/Users/paulohenriq/Library/Mobile Documents/com~apple~CloudDocs/Mestrado/UFPE/2023.1/Disciplinas/PLP/plp2023-imperative2-with-date/Imperativa2/src/li2/plp/expressions2/expression/ExpDateEqual.java
 /Users/paulohenriq/Library/Mobile Documents/com~apple~CloudDocs/Mestrado/UFPE/2023.1/Disciplinas/PLP/plp2023-imperative2-with-date/Imperativa2/src/li2/plp/expressions2/expression/ExpNot.java
 /Users/paulohenriq/Library/Mobile Documents/com~apple~CloudDocs/Mestrado/UFPE/2023.1/Disciplinas/PLP/plp2023-imperative2-with-date/Imperativa2/src/li2/plp/imperative1/memory/ContextoCompilacaoImperativa.java
+/Users/paulohenriq/Library/Mobile Documents/com~apple~CloudDocs/Mestrado/UFPE/2023.1/Disciplinas/PLP/plp2023-imperative2-with-date/Imperativa2/src/li2/plp/imperative2/util/Data.java
 /Users/paulohenriq/Library/Mobile Documents/com~apple~CloudDocs/Mestrado/UFPE/2023.1/Disciplinas/PLP/plp2023-imperative2-with-date/Imperativa2/src/li2/plp/expressions2/memory/Ambiente.java
 /Users/paulohenriq/Library/Mobile Documents/com~apple~CloudDocs/Mestrado/UFPE/2023.1/Disciplinas/PLP/plp2023-imperative2-with-date/Imperativa2/src/li2/plp/expressions2/expression/Expressao.java
 /Users/paulohenriq/Library/Mobile Documents/com~apple~CloudDocs/Mestrado/UFPE/2023.1/Disciplinas/PLP/plp2023-imperative2-with-date/Imperativa2/src/li2/plp/imperative2/memory/ContextoExecucaoImperativa2.java

@@ -10,6 +10,7 @@ li2/plp/expressions2/expression/ExpLength.class
 li2/plp/expressions2/memory/AmbienteCompilacao.class
 li2/plp/imperative2/declaration/ListaDeclaracaoParametro.class
 li2/plp/expressions2/expression/ExpMenos.class
+li2/plp/expressions2/expression/ExpDateEqual.class
 li2/plp/imperative1/command/ComandoDeclaracao.class
 li2/plp/imperative1/memory/EntradaVaziaException.class
 li2/plp/expressions1/util/Tipo.class
@@ -25,6 +26,7 @@ li2/plp/imperative2/memory/AmbienteExecucaoImperativa2.class
 li2/plp/imperative1/declaration/DeclaracaoComposta.class
 li2/plp/expressions2/expression/Valor.class
 li2/plp/imperative2/memory/ContextoExecucaoImperativa2.class
+li2/plp/imperative2/util/Data.class
 li2/plp/expressions2/memory/ContextoExecucao.class
 li2/plp/expressions2/expression/ValorDate.class
 li2/plp/imperative2/memory/ProcedimentoJaDeclaradoException.class
@@ -76,5 +78,6 @@ li2/plp/imperative1/util/Lista.class
 li2/plp/imperative1/command/While.class
 li2/plp/expressions2/memory/StackHandler.class
 li2/plp/expressions2/memory/VariavelNaoDeclaradaException.class
+li2/plp/expressions2/expression/ExpDiff.class
 li2/plp/expressions2/expression/ExpDeclaracao.class
 li2/plp/imperative2/parser/Token.class

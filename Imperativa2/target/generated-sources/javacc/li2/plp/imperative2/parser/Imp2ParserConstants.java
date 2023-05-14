@@ -57,7 +57,7 @@ public interface Imp2ParserConstants {
   /** RegularExpression Id. */
   int STRING = 28;
   /** RegularExpression Id. */
-  int DATE = 29;
+  int DATA = 29;
   /** RegularExpression Id. */
   int INTEGER_LITERAL = 30;
   /** RegularExpression Id. */
@@ -141,17 +141,21 @@ public interface Imp2ParserConstants {
   /** RegularExpression Id. */
   int MINUS = 70;
   /** RegularExpression Id. */
-  int STAR = 71;
+  int DIFF = 71;
   /** RegularExpression Id. */
-  int SLASH = 72;
+  int DATE_EQUAL = 72;
   /** RegularExpression Id. */
-  int BIT_AND = 73;
+  int STAR = 73;
   /** RegularExpression Id. */
-  int BIT_OR = 74;
+  int SLASH = 74;
   /** RegularExpression Id. */
-  int XOR = 75;
+  int BIT_AND = 75;
   /** RegularExpression Id. */
-  int REM = 76;
+  int BIT_OR = 76;
+  /** RegularExpression Id. */
+  int XOR = 77;
+  /** RegularExpression Id. */
+  int REM = 78;
 
   /** Lexical state. */
   int DEFAULT = 0;
@@ -187,7 +191,7 @@ public interface Imp2ParserConstants {
     "\"int\"",
     "\"boolean\"",
     "\"string\"",
-    "\"date\"",
+    "\"data\"",
     "<INTEGER_LITERAL>",
     "<DECIMAL_LITERAL>",
     "<HEX_LITERAL>",
@@ -229,6 +233,8 @@ public interface Imp2ParserConstants {
     "\"++\"",
     "\"+\"",
     "\"-\"",
+    "\"---\"",
+    "\"===\"",
     "\"*\"",
     "\"/\"",
     "\"&\"",

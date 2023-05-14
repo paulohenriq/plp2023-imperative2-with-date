@@ -12,7 +12,7 @@ public enum TipoPrimitivo implements Tipo {
 	INTEIRO("INTEIRO"),
 	BOOLEANO("BOOLEANO"),
 	STRING("STRING"),
-	DATE("DATE");
+	DATA("DATA");
 
 	protected String nome;
 
@@ -52,10 +52,10 @@ public enum TipoPrimitivo implements Tipo {
 	}
 
 	/* (non-Javadoc)
-	 * @see li2.plp.expressions1.util.Tipo#eDate()
+	 * @see li2.plp.expressions1.util.Tipo#eData()
 	 */
-	public boolean eDate() {
-		return this.eIgual(DATE);
+	public boolean eData() {
+		return this.eIgual(DATA);
 	}
 
 	/* (non-Javadoc)

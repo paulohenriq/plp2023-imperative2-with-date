@@ -1,8 +1,11 @@
 { 
-  var data1 = US-10/11/1900,
-  var data2 = BR-12/10/1900,
-  var data3 = JP-1900/10/13;
+  var data1 = US-02/30/1900 ,
+  var data2 = BR-12/12/1901 ,
+  var data3 = JP-1900/12/12 ;
   write(data1);
   write(data2);
-  write(data3)
+  write(data3);
+  write((data3 --- data2) == 365); 
+  write(data3 --- data2);
+  write(BR-11/01/2023 === US-01/11/2023)
 }

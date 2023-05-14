@@ -287,24 +287,8 @@ public class MultiInterpretador {
 
 		while (parser.hasMoreTokens()) {
 			String parametro = parser.nextToken();
-			String formatStr = "MM/dd/yyyy";
 			try {
-				switch (parametro.toString().substring(0, 2)) { 
-					case "US":
-						formatStr = "MM/dd/yyyy";
-						break;
-					case "BR":
-						formatStr = "dd/MM/yyyy";
-						break;
-					case "JP":
-						formatStr = "yyyy/MM/dd";
-						break;
-					default:
-						break;
-				}
-				SimpleDateFormat dateFormat = new SimpleDateFormat(formatStr, Locale.ENGLISH);
-				Date date = dateFormat.parse(parametro.toString().substring(3));
-				valores.add(new li1.plp.expressions2.expression.ValorDate(date));
+				valores.add(new li1.plp.expressions2.expression.ValorDate(parametro));
 			} catch (Exception e) {
 				try {
 					Integer inteiro = Integer.valueOf(parametro);
@@ -338,25 +322,8 @@ public class MultiInterpretador {
 		while (parser.hasMoreTokens()) {
 			String parametro = parser.nextToken();
 
-
-			String formatStr = "MM/dd/yyyy";
 			try {
-				switch (parametro.toString().substring(0, 2)) { 
-					case "US":
-						formatStr = "MM/dd/yyyy";
-						break;
-					case "BR":
-						formatStr = "dd/MM/yyyy";
-						break;
-					case "JP":
-						formatStr = "yyyy/MM/dd";
-						break;
-					default:
-						break;
-				}
-				SimpleDateFormat dateFormat = new SimpleDateFormat(formatStr, Locale.ENGLISH);
-				Date date = dateFormat.parse(parametro.toString().substring(3));
-				valores.add(new li1.plp.expressions2.expression.ValorDate(date));
+				valores.add(new li1.plp.expressions2.expression.ValorDate(parametro));
 			} catch (Exception e) {
 				try {
 					Integer inteiro = Integer.valueOf(parametro);
@@ -387,25 +354,8 @@ public class MultiInterpretador {
 
 		while (parser.hasMoreTokens()) {
 			String parametro = parser.nextToken();
-
-			String formatStr = "MM/dd/yyyy";
 			try {
-				switch (parametro.toString().substring(0, 2)) { 
-					case "US":
-						formatStr = "MM/dd/yyyy";
-						break;
-					case "BR":
-						formatStr = "dd/MM/yyyy";
-						break;
-					case "JP":
-						formatStr = "yyyy/MM/dd";
-						break;
-					default:
-						break;
-				}
-				SimpleDateFormat dateFormat = new SimpleDateFormat(formatStr, Locale.ENGLISH);
-				Date date = dateFormat.parse(parametro.toString().substring(3));
-				valores.add(new li1.plp.expressions2.expression.ValorDate(date));
+				valores.add(new li1.plp.expressions2.expression.ValorDate(parametro));
 			} catch (Exception e) {
 				try {
 					Integer inteiro = Integer.valueOf(parametro);
@@ -435,25 +385,8 @@ public class MultiInterpretador {
 
 		while (parser.hasMoreTokens()) {
 			String parametro = parser.nextToken();
-
-			String formatStr = "MM/dd/yyyy";
 			try {
-				switch (parametro.toString().substring(0, 2)) { 
-					case "US":
-						formatStr = "MM/dd/yyyy";
-						break;
-					case "BR":
-						formatStr = "dd/MM/yyyy";
-						break;
-					case "JP":
-						formatStr = "yyyy/MM/dd";
-						break;
-					default:
-						break;
-				}
-				SimpleDateFormat dateFormat = new SimpleDateFormat(formatStr, Locale.ENGLISH);
-				Date date = dateFormat.parse(parametro.toString().substring(3));
-				valores.add(new li1.plp.expressions2.expression.ValorDate(date));
+				valores.add(new li1.plp.expressions2.expression.ValorDate(parametro));
 			} catch (Exception e) {
 				try {
 					Integer inteiro = Integer.valueOf(parametro);

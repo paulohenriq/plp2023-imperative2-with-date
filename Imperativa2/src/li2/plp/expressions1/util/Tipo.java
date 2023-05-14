@@ -37,12 +37,12 @@ public interface Tipo {
 	public abstract boolean eString();
 
 	/**
-	 * Indica se esta expressao &eacute; date.
+	 * Indica se esta expressao &eacute; data.
 	 * 
-	 * @return <code>true</code> se esta expressao for date;
+	 * @return <code>true</code> se esta expressao for data;
 	 *         <code>false</code> caso contrario.
 	 */
-	public abstract boolean eDate();
+	public abstract boolean eData();
 
 	/**
 	 * Compara este tipo com o tipo dado.
