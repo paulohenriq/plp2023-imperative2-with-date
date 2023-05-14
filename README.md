@@ -28,7 +28,7 @@ Skip ::=
 Atribuicao ::= Id ":=" Expressao
 Expressao ::= Valor | ExpUnaria | ExpBinaria | Id
 Valor ::= ValorConcreto
-ValorConcreto ::= ValorInteiro | ValorBooleano | ValorString | <a href="#">ValorData</a>
+ValorConcreto ::= ValorInteiro | ValorBooleano | ValorString | <a href="https://github.com/paulohenriq/plp2023-imperative2-with-date/blob/main/Imperativa2/src/li2/plp/expressions2/expression/ValorDate.java">ValorDate</a>
 ExpUnaria ::= "-" Expressao | "not" Expressao | "length" Expressao
 ExpBinaria ::= Expressao "+" Expressao
                   | Expressao "-" Expressao
@@ -36,8 +36,8 @@ ExpBinaria ::= Expressao "+" Expressao
                   | Expressao "or" Expressao
                   | Expressao "==" Expressao
                   | Expressao "++" Expressao
-		              | <a href="#">Expressao "---" Expressao</a>
-                  | <a href="#">Expressao "===" Expressao</a>
+		  | <a href="https://github.com/paulohenriq/plp2023-imperative2-with-date/blob/main/Imperativa2/src/li2/plp/expressions2/expression/ExpDiff.java" target="_blank">Expressao "---" Expressao</a>
+                  | <a href="https://github.com/paulohenriq/plp2023-imperative2-with-date/blob/main/Imperativa2/src/li2/plp/expressions2/expression/ExpDateEqual.java" target="_blank">Expressao "===" Expressao</a>
 ComandoDeclaracao :: = "{" Declaracao ";" Comando "}"
 Declaracao ::= DeclaracaoVariavel
                   | DeclaracaoProcedimento
@@ -46,7 +46,7 @@ DeclaracaoVariavel ::= "var" Id "=" Expressao
 DeclaracaoComposta ::= Declaracao "," Declaracao
 DeclaracaoProcedimento ::= "proc" Id "(" [ ListaDeclaracaoParametro ] ")" "{" Comando "}"
 ListaDeclaracaoParametro ::= Tipo Id | Tipo Id "," ListaDeclaracaoParametro
-Tipo ::= "string" | "int" | "boolean" | <a href="#">"data"</a>
+Tipo ::= "string" | "int" | "boolean" | <a href="https://github.com/paulohenriq/plp2023-imperative2-with-date/blob/main/Imperativa2/src/li2/plp/imperative2/util/Data.java">"data"</a>
 While ::= "while" Expressao "do" Comando
 IfThenElse ::= "if" Expressao "then" Comando "else" Comando
 IO ::= "write" "(" Expressao ")" | "read" "(" Id ")"
